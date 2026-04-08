@@ -8,36 +8,47 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
             background-color: #f8f9fa;
             color: #212529;
-            text-align: center;
             padding: 20px;
         }
         .container {
-            padding: 2rem;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 2rem;
+            padding: 2.5rem;
             background: white;
             border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 500px;
+            max-width: 900px;
             width: 100%;
+        }
+        .image-section {
+            flex: 1;
+            min-width: 0; /* Prevents flex items from overflowing */
+        }
+        .text-section {
+            flex: 1;
+            text-align: left;
         }
         h1 {
             margin-top: 0;
             color: #007bff;
             font-size: 2rem;
+            margin-bottom: 1rem;
         }
         .drum-image {
             width: 100%;
             height: auto;
             border-radius: 8px;
-            margin-bottom: 1.5rem;
             display: block;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            object-fit: cover;
         }
         p {
             font-size: 1.1rem;
@@ -45,23 +56,40 @@
             margin: 0;
             color: #495057;
         }
+        /* Responsive adjustment for mobile */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+            }
+            .text-section {
+                text-align: center;
+            }
+            .image-section {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>My Drum Kit</h1>
-        <img 
-            src="drums.jpeg" 
-            alt="My drum set" 
-            class="drum-image"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-        >
-        <!-- Fallback message if the image is missing -->
-        <div style="display:none; padding: 20px; border: 2px dashed #dee2e6; border-radius: 8px; margin-bottom: 1.5rem;">
-            <p style="font-style: italic; color: #6c757d;"></p>
+        <div class="image-section">
+            <img 
+                src="image_11a6ee.jpg" 
+                alt="My drum set" 
+                class="drum-image"
+                onerror="this.parentElement.style.display='none'; this.parentElement.nextElementSibling.querySelector('.fallback').style.display='block';"
+            >
         </div>
-        
-        <p>This is a picture of my drums. I've been playing since i was 12, so over 8 years now. It's a way I like to relieve stress and express myself creatively.</p>
+
+        <div class="text-section">
+            <div class="fallback" style="display:none; padding: 20px; border: 2px dashed #dee2e6; border-radius: 8px; margin-bottom: 1.5rem; text-align: center;">
+                <p style="font-style: italic; color: #6c757d;"></p>
+            </div>
+            <h1>My Drum Kit</h1>
+            <p>This is a picture of my drums. I've been playing since i was 12, so over 8 years now. It's a way I like to relieve stress and express myself creatively.</p>
+        </div>
     </div>
 </body>
 </html>
